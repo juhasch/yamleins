@@ -1,0 +1,3 @@
+blue_time: 11us
+num_blue_time: 128
+white_time: num_blue_time * blue_time

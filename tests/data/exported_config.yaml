@@ -1,0 +1,4 @@
+frequency: 1000000000.0
+blue_time: 1.1e-05
+num_blue_time: 128
+white_time: 0.001408

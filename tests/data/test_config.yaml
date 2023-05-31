@@ -1,0 +1,27 @@
+  blue_time:
+      type: float | int
+      default: 20us
+      unit: s
+      doc: Duration of a single blue time
+      range: [1 ns, 1s]
+
+  num_blue_time:
+      type: int
+      default: 128
+      unit: None
+      doc: Number of blue times
+      range: [1, 1000]
+
+  white_time:
+      type: float | int
+      default: 1ms
+      unit: s
+      doc: Duration of a single slow time frame
+      range: [1 ns, 1s]
+
+  frequency:
+      type: float | int
+      default: 1GHz
+      unit: Hz
+      doc: A typical frequency
+      range: [1 Hz, 10GHz]
