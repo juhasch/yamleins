@@ -33,11 +33,11 @@ def test_load_units(yaml_config):
 def test_load_missing_key(yaml_config):
     with open(Path(__file__).parent / 'data' / 'test_load_missing.yaml') as f:
         load_str = f.read()
-#    with pytest.raises(KeyError):
     yaml_config.load(load_str, keep_units=False)
     assert yaml_config.blue_time == 11e-6
     assert yaml_config.num_blue_time == 128
-    assert yaml_config.bandwidth == 1e9
+    with pytest.raises(KeyError):
+        assert yaml_config.bandwidth == 1e9
 
 
 def test_export(yaml_config, tmp_path):
@@ -51,7 +51,6 @@ def test_export(yaml_config, tmp_path):
 
 
 def test_export_units(yaml_config, tmp_path):
-    from PhysicalQuantities import q
     with open(Path(__file__).parent / 'data' / 'test_load.yaml') as f:
         load_str = f.read()
     yaml_config.load(load_str)

@@ -2,7 +2,7 @@
 
 __version__: str = '0.1.0'
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, Any
 import yaml
 from PhysicalQuantities.unit import findunit
@@ -31,7 +31,7 @@ class Validator:
 
     def check_schema(self):
         """Check if schema is valid"""
-        if not all(field in self.schema for field in self.fields):
+        if not all(_field in self.schema for _field in self.fields):
             raise KeyError(f'[{self.name}]: A field is missing in schema.')
 
     def check_units(self):
@@ -65,7 +65,7 @@ class Validator:
 @dataclass
 class YamlConfig:
     _parameters: Dict[str, 'Validator']  # Dict of parameters read from template yaml file
-    _values: Dict[str, 'Any'] = None
+    _values: Dict[str, 'Any'] = field(default_factory=dict)
 
     def __post_init__(self):
         self._values = dict()
@@ -157,7 +157,7 @@ class YamlConfig:
 if __name__ == '__main__':
     a = """
         blue_time:
-            type: float
+            type: float | int
             default: 20us
             unit: s
             doc: Duration of a single chirp
@@ -171,14 +171,14 @@ if __name__ == '__main__':
             range: [1, 1000]
 
         white_time:
-            type: float
+            type: float | int
             default: 1ms
             unit: s
             doc: Duration of a single slow time frame
             range: [1 ns, 1s]
             
         bandwidth:
-            type: float
+            type: float | int
             default: 1GHz
             unit: Hz
             doc: Bandwidth of the chirp
