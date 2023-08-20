@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint pytest mypy
+        pip install pylint pytest pyyaml PhysicalQuantities mypy types-PyYAML
     - name: Analysing the code with mypy
       run: |
         mypy -m yamleins
