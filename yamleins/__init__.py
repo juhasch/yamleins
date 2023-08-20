@@ -65,7 +65,7 @@ class Validator:
 @dataclass
 class YamlConfig:
     _parameters: Dict[str, 'Validator']  # Dict of parameters read from template yaml file
-    _values: Dict[str, 'Any'] = None
+    _values: Dict[str, 'Any', None] = None
 
     def __post_init__(self):
         self._values = dict()
